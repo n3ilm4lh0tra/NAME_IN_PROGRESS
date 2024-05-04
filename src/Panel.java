@@ -36,7 +36,7 @@ public class Panel extends JPanel implements Runnable{
         }
     }
     private void update(){}
-    public void paintComponent(Graphics g){}
-
-
+    public void paintComponent(Graphics g){
+        super.paintComponent(g);
+    }
 }
