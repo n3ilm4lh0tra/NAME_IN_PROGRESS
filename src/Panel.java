@@ -11,6 +11,10 @@ public class Panel extends JPanel implements Runnable{
         setPreferredSize(new Dimension(WIDTH, HEIGHT));
         setBackground(Color.BLACK);
     }
+    public void launch(){
+        thread = new Thread(this);
+        thread.start();
+    }
     @Override
     public void run() {
     }
