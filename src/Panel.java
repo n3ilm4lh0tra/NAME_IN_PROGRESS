@@ -9,4 +9,6 @@ public class Panel extends JPanel {
         setPreferredSize(new Dimension(WIDTH, HEIGHT));
         setBackground(Color.BLACK);
     }
+    private void update(){}
+    public void paintComponent(Graphics g){}
 }
