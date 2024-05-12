@@ -6,6 +6,7 @@ public class Panel extends JPanel implements Runnable{
     public int HEIGHT = 800;
     final int FPS = 60;
     Thread thread;
+    Room room = new Room();
 
     public Panel() {
         setPreferredSize(new Dimension(WIDTH, HEIGHT));
@@ -38,5 +39,10 @@ public class Panel extends JPanel implements Runnable{
     private void update(){}
     public void paintComponent(Graphics g){
         super.paintComponent(g);
+        Graphics2D g2 = (Graphics2D) g;
+        g2.setColor(Color.WHITE);
+        g2.setFont(new Font("Times New Roman", Font.BOLD, 16));
+        g2.drawString("0", 0, 16);
+        room.draw(g2);
     }
 }
