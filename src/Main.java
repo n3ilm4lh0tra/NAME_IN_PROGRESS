@@ -14,7 +14,9 @@ public class Main {
         window.setLocationRelativeTo(null);
         window.setVisible(true);
 
-        p.launch();
+        //p.launch();
+        Objects o = new Objects();
+        o.addObject();
 
     }
 }

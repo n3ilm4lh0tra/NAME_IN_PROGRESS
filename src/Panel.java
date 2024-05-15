@@ -1,7 +1,7 @@
 import javax.swing.*;
 import java.awt.*;
 
-public class Panel extends JPanel implements Runnable{
+public class Panel extends JPanel /*implements Runnable*/ {
     public int WIDTH = 1100;
     public int HEIGHT = 800;
     final int FPS = 60;
@@ -12,11 +12,13 @@ public class Panel extends JPanel implements Runnable{
         setPreferredSize(new Dimension(WIDTH, HEIGHT));
         setBackground(Color.BLACK);
     }
-    public void launch(){
-        thread = new Thread(this);
-        thread.start();
-    }
-    @Override
+
+    /*public void launch() {
+        //thread = new Thread(this);
+        //thread.start();
+    }*/
+
+    //@Override
     /*public void run() {
         double drawInterval = 1000000000/FPS;
         double delta = 0;
@@ -36,8 +38,10 @@ public class Panel extends JPanel implements Runnable{
             }
         }
     }*/
-    private void update(){}
-    public void paintComponent(Graphics g){
+    private void update() {
+    }
+
+    public void paintComponent(Graphics g) {
         super.paintComponent(g);
         Graphics2D g2 = (Graphics2D) g;
         g2.setColor(Color.WHITE);
