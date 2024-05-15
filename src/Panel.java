@@ -17,7 +17,7 @@ public class Panel extends JPanel implements Runnable{
         thread.start();
     }
     @Override
-    public void run() {
+    /*public void run() {
         double drawInterval = 1000000000/FPS;
         double delta = 0;
         long lastTime = System.nanoTime();
@@ -35,7 +35,7 @@ public class Panel extends JPanel implements Runnable{
                 delta--;
             }
         }
-    }
+    }*/
     private void update(){}
     public void paintComponent(Graphics g){
         super.paintComponent(g);
