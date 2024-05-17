@@ -3,11 +3,12 @@ import java.awt.*;
 import java.util.Scanner;
 
 public class Panel extends JPanel implements Runnable {
-    public int WIDTH = 1200;
-    public int HEIGHT = 1200;
+    Room room = new Room();
+    public int WIDTH = room.getMAX_COL() + 100;
+    public int HEIGHT = room.getMAX_ROW() + 100;
     final int FPS = 60;
     Thread thread;
-    Room room = new Room();
+
     boolean objectAdded = false;
     Objects o = new Objects();
 
@@ -62,9 +63,9 @@ public class Panel extends JPanel implements Runnable {
         g2.setFont(new Font("Times New Roman", Font.BOLD, 16));
         g2.drawString("0", 0, 16);
         room.draw(g2);
-        if(objectAdded){
-            o.draw(g2);
-            objectAdded = false;
-        }
+       for(int i = 0; i<o.o.size(); i++){
+           g2.setColor(o.o.get(i).c);
+           g2.fillRect(o.o.get(i).x, o.o.get(i).y, o.o.get(i).width, o.o.get(i).height);
+       }
     }
 }

@@ -33,7 +33,7 @@ public class Objects {
             x = sc.nextInt();
             System.out.print("#object y:\n#");
             y = sc.nextInt();
-            o.add(index, new Object(name, width, height, x, y));
+            o.add(index, new Object(name, c, width*16, height*16, x*16, y*16));
             index++;
             System.out.println("#object added");
         }catch (Exception e) {

@@ -1,13 +1,17 @@
+import java.awt.*;
+
 public class Object {
     String name;
     String colour;
+    Color c;
     int width;
     int height;
     int x;
     int y;
 
-    public Object(String name, int width, int height, int x, int y) {
+    public Object(String name, Color c, int width, int height, int x, int y) {
         this.name = name;
+        this.c = c;
         this.width = width;
         this.height = height;
         this.x = x;
