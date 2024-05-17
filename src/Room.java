@@ -9,8 +9,8 @@ public class Room {
     public void draw(Graphics g2) {
         for (int i = 0; i < MAX_COL; i++) {
             g2.setColor(Color.WHITE);
-            g2.setFont(new Font("Times New Roman", Font.BOLD, 12));
-            g2.drawString(String.valueOf(i + 1), 16 * (i + 1) + 2, 12);
+            g2.setFont(new Font("Times New Roman", Font.BOLD, 10));
+            g2.drawString(String.valueOf(i + 1), 16 * (i + 1), 12);
             for (int j = 0; j < MAX_ROW; j++) {
                 g2.drawString(String.valueOf(j + 1), 0, 16 * (j + 2));
             }

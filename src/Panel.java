@@ -2,8 +2,8 @@ import javax.swing.*;
 import java.awt.*;
 
 public class Panel extends JPanel /*implements Runnable*/ {
-    public int WIDTH = 1100;
-    public int HEIGHT = 800;
+    public int WIDTH = 1200;
+    public int HEIGHT = 1200;
     final int FPS = 60;
     Thread thread;
     Room room = new Room();

@@ -11,6 +11,9 @@ public class Main {
         window.add(p);
         window.pack();
 
+        JScrollPane sp = new JScrollPane(p);
+        window.add(sp);
+
         window.setLocationRelativeTo(null);
         window.setVisible(true);
 

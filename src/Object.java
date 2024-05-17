@@ -1,5 +1,6 @@
 public class Object {
     String name;
+    String colour;
     int width;
     int height;
     int x;
