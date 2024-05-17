@@ -5,29 +5,34 @@ import java.util.Scanner;
 public class Objects {
     ArrayList<Object> o = new ArrayList<>();
     int index = 0;
+    String name;
     String colour;
+    int width;
+    int height;
+    int x;
+    int y;
     Color c;
     public Objects() {
     }
 
     public void addObject() {
-        Graphics g;
         try {
             Scanner sc = new Scanner(System.in);
             System.out.print("#object name:\n#");
-            String name = sc.nextLine();
+            name = sc.nextLine();
             System.out.print("#object colour:\n#");
             colour = sc.nextLine();
             colour.toLowerCase();
             checkColour();
+            System.out.println("colour set to "+colour);
             System.out.print("#object width:\n#");
-            int width = sc.nextInt();
+            width = sc.nextInt();
             System.out.print("#object height:\n#");
-            int height = sc.nextInt();
+            height = sc.nextInt();
             System.out.print("#object x:\n#");
-            int x = sc.nextInt();
+            x = sc.nextInt();
             System.out.print("#object y:\n#");
-            int y = sc.nextInt();
+            y = sc.nextInt();
             o.add(index, new Object(name, width, height, x, y));
             index++;
             System.out.println("#object added");
@@ -39,12 +44,30 @@ public class Objects {
         switch(colour){
             case "red":
                 c = Color.RED;
-                System.out.println("colour set to red");
                 break;
             case "orange":
                 c = Color.ORANGE;
-                System.out.println("colour set to orange");
-
+                break;
+            case "yellow":
+                c = Color.yellow;
+                break;
+            case "green":
+                c = Color.green;
+                break;
+            case "blue":
+                c = Color.blue;
+                break;
+            case "pink":
+                c = Color.pink;
+                break;
+            default:
+                System.out.println("not in selection or invalid colour");
+                colour = null;
+                break;
         }
+    }
+    public void draw(Graphics g) {
+        g.setColor(c);
+        g.fillRect(x*16, y*16, width*16, height*16);
     }
 }
