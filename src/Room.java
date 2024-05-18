@@ -5,6 +5,8 @@ public class Room {
     private final int SQUARE_SIZE = 16;
     private final int HALF_SQUARE_SIZE = SQUARE_SIZE / 2;
 
+    public void setRoomSize(){}
+
     public int getMAX_COL() {
         return MAX_COL;
     }
@@ -43,7 +45,6 @@ public class Room {
                     g2.setColor(Color.GRAY);
                     c = 1;
                 } else {
-                    g2.setColor(Color.GRAY);
                     c = 0;
                 }
                 g2.drawRect(col * SQUARE_SIZE, row * SQUARE_SIZE, SQUARE_SIZE, SQUARE_SIZE);
