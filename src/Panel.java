@@ -53,7 +53,31 @@ public class Panel extends JPanel implements Runnable {
     }
 
     private void update() {
-        o.addObject();
+        Scanner sc = new Scanner(System.in);
+        System.out.print("#what do you want to do?\n#");
+        String action = sc.nextLine();
+        switch (action.toLowerCase()) {
+            case "add":
+                o.addObject();
+                break;
+            case "remove":
+                if (o.o.isEmpty()) {
+                    System.out.println("#nothing to move");
+                } else {
+                    o.removeObject();
+                }
+                break;
+            case "move":
+                if (o.o.isEmpty()) {
+                    System.out.println("#nothing to move");
+                } else {
+                    o.moveObject();
+                }
+                break;
+            default:
+                System.out.println("#invalid action");
+                break;
+        }
     }
 
     public void paintComponent(Graphics g) {

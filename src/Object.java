@@ -9,8 +9,9 @@ public class Object {
     int x;
     int y;
 
-    public Object(String name, Color c, int width, int height, int x, int y) {
+    public Object(String name, String colour, Color c, int width, int height, int x, int y) {
         this.name = name;
+        this.colour = colour;
         this.c = c;
         this.width = width;
         this.height = height;
