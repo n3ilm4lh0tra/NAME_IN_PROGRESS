@@ -5,7 +5,7 @@ import java.util.Scanner;
 
 public class Objects {
     ArrayList<Object> o = new ArrayList<>();
-    int index = 0;
+    Room r = new Room();
     String name;
     String colour;
     int width;
@@ -35,12 +35,11 @@ public class Objects {
             x = sc.nextInt();
             System.out.print("#object y\n#");
             y = sc.nextInt();
-            o.add(index, new Object(name, colour, c, width * 16, height * 16, x * 16, y * 16));
-            System.out.println(o.get(index));
-            index++;
+            checkBounds(x, y, width, height);
+            o.add(new Object(name, colour, c, width * 16, height * 16, x * 16, y * 16));
             System.out.println("#object added");
         } catch (InputMismatchException e) {
-            System.out.println("#invalid input, add again");
+            System.out.println("#invalid input, returning to menu");
         }
     }
 
@@ -54,9 +53,10 @@ public class Objects {
         for (int i = 0; i < o.size(); i++) {
             if (o.get(i).name.toLowerCase().equals(n)) {
                 o.remove(i);
-                System.out.print("#object removed");
+                System.out.print("#object removed\n");
+                break;
             } else {
-                System.out.println("#object not found");
+                System.out.println("#object not found\n");
             }
         }
     }
@@ -78,17 +78,23 @@ public class Objects {
                     newX = sc.nextInt();
                     System.out.print("#new y\n#");
                     newY = sc.nextInt();
-                    o.get(i).x = newX;
-                    o.get(i).y = newY;
-                    System.out.print("#object moved moved to\n#x = " + o.get(i).x + "\n#new y = " + o.get(i).y);
+                    checkBounds(newX, newY, o.get(i).width, o.get(i).height);
+                    o.get(i).x = newX*16;
+                    o.get(i).y = newY*16;
+                    System.out.println("#object moved moved to\n#x = " + o.get(i).x + "\n#new y = " + o.get(i).y);
                 } catch (InputMismatchException e) {
-                    System.out.print("#invalid input, object was not moved");
+                    System.out.println("#invalid input, object was not moved");
                 }
             } else {
                 System.out.println("#object not found");
             }
         }
-
+    }
+    public void checkBounds(int X, int Y, int WIDTH, int HEIGHT){
+        if(X < 1||X+WIDTH>r.getMAX_COL()||Y < 1||Y+HEIGHT>r.getMAX_ROW()) {
+            System.out.println("#out of bounds");
+            throw new InputMismatchException();
+        }
     }
 
     public void checkColour() {

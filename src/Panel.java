@@ -16,15 +16,6 @@ public class Panel extends JPanel implements Runnable {
         setBackground(Color.BLACK);
     }
 
-    public void temp() {
-        Scanner sc = new Scanner(System.in);
-        int x = sc.nextInt();
-        if (x == 5) {
-        } else if (x == 8) {
-            System.out.println(o.o);
-        }
-    }
-
     public void launch() {
         //room.setRoomSize();
         thread = new Thread(this);
@@ -90,6 +81,10 @@ public class Panel extends JPanel implements Runnable {
         for (int i = 0; i < o.o.size(); i++) {
             g2.setColor(o.o.get(i).c);
             g2.fillRect(o.o.get(i).x, o.o.get(i).y, o.o.get(i).width, o.o.get(i).height);
+        }
+        for (int i = 0; i < o.o.size(); i++) {
+            g2.setColor(Color.BLACK);
+            g2.drawString(o.o.get(i).name, o.o.get(i).x + 1, o.o.get(i).y + (o.o.get(i).height / 2));
         }
     }
 }
