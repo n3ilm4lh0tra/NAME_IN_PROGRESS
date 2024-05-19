@@ -17,11 +17,6 @@ public class Objects {
     public Objects() {
     }
 
-    public void setNameAndColour() {
-        Scanner sc = new Scanner(System.in);
-
-    }
-
     public void addObject() {
         Scanner sc = new Scanner(System.in);
         System.out.print("#object name\n#");
