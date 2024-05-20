@@ -23,6 +23,7 @@ public class Objects {
         try {
             name = sc.nextLine();
             name = name.toUpperCase();
+            dupeChecker(name);
             System.out.print("#object colour:\n#");
             colour = sc.nextLine();
             colour = colour.toLowerCase();
@@ -124,6 +125,14 @@ public class Objects {
         if(X < 1||X+WIDTH>r.getMAX_COL()+1||Y < 1||Y+HEIGHT>r.getMAX_ROW()+1) {
             System.out.println("#out of bounds");
             throw new InputMismatchException();
+        }
+    }
+    public void dupeChecker(String nme){
+        for (int i = 0; i < o.size(); i++) {
+            if(nme.equals(o.get(i).name)){
+                System.out.println("#no duplicate names");
+                throw new InputMismatchException();
+            }
         }
     }
 
