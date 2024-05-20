@@ -10,6 +10,7 @@ public class Panel extends JPanel implements Runnable {
     Thread thread;
 
     Objects o = new Objects();
+    Text t = new Text();
 
     public Panel() {
         setPreferredSize(new Dimension(WIDTH, HEIGHT));
@@ -72,11 +73,14 @@ public class Panel extends JPanel implements Runnable {
                     o.resizeObject();
                 }
                 break;
+            case "help":
+                t.instructions();
+                break;
             case "exit":
                 System.exit(0);
                 break;
             default:
-                System.out.println("#invalid action");
+                System.out.println("#invalid action\n#type help for instructions");
                 break;
         }
     }
