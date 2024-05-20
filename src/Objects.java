@@ -22,6 +22,7 @@ public class Objects {
         System.out.print("#object name\n#");
         try {
             name = sc.nextLine();
+            name = name.toUpperCase();
             System.out.print("#object colour:\n#");
             colour = sc.nextLine();
             colour = colour.toLowerCase();
@@ -48,7 +49,7 @@ public class Objects {
         String n;
         System.out.print("#object name\n#");
         n = sc.nextLine();
-        n = n.toLowerCase();
+        n = n.toUpperCase();
         System.out.println(n);
         for (int i = 0; i < o.size(); i++) {
             if (o.get(i).name.toLowerCase().equals(n)) {
@@ -66,10 +67,10 @@ public class Objects {
         String n;
         System.out.print("#object name\n#");
         n = sc.nextLine();
-        n = n.toLowerCase();
+        n = n.toUpperCase();
         System.out.println(n);
         for (int i = 0; i < o.size(); i++) {
-            if (o.get(i).name.toLowerCase().equals(n)) {
+            if (o.get(i).name.equals(n)) {
                 System.out.println("#" + o.get(i).name + " found");
                 int newX;
                 int newY;
@@ -81,7 +82,36 @@ public class Objects {
                     checkBounds(newX, newY, o.get(i).width, o.get(i).height);
                     o.get(i).x = newX*16;
                     o.get(i).y = newY*16;
-                    System.out.println("#object moved moved to\n#x = " + o.get(i).x + "\n#new y = " + o.get(i).y);
+                    System.out.println("#object moved moved to\n#x = " + newX + "\n#new y = " + newY);
+                } catch (InputMismatchException e) {
+                    System.out.println("#invalid input, object was not moved");
+                }
+            } else {
+                System.out.println("#object not found");
+            }
+        }
+    }
+    public void resizeObject(){
+        Scanner sc = new Scanner(System.in);
+        String n;
+        System.out.print("#object name\n#");
+        n = sc.nextLine();
+        n = n.toUpperCase();
+        System.out.println(n);
+        for (int i = 0; i < o.size(); i++) {
+            if (o.get(i).name.equals(n)) {
+                System.out.println("#" + o.get(i).name + " found");
+                int newWidth;
+                int newHeight;
+                try {
+                    System.out.print("#new x\n#");
+                    newWidth = sc.nextInt();
+                    System.out.print("#new y\n#");
+                    newHeight = sc.nextInt();
+                    checkBounds(o.get(i).x, o.get(i).y, newWidth, newHeight);
+                    o.get(i).x = newWidth*16;
+                    o.get(i).y = newHeight*16;
+                    System.out.println("#object moved moved to\n#new width = " + newWidth + "\n#new height = " + newHeight);
                 } catch (InputMismatchException e) {
                     System.out.println("#invalid input, object was not moved");
                 }
@@ -91,7 +121,7 @@ public class Objects {
         }
     }
     public void checkBounds(int X, int Y, int WIDTH, int HEIGHT){
-        if(X < 1||X+WIDTH>r.getMAX_COL()||Y < 1||Y+HEIGHT>r.getMAX_ROW()) {
+        if(X < 1||X+WIDTH>r.getMAX_COL()+1||Y < 1||Y+HEIGHT>r.getMAX_ROW()+1) {
             System.out.println("#out of bounds");
             throw new InputMismatchException();
         }

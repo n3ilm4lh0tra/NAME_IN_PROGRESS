@@ -65,6 +65,16 @@ public class Panel extends JPanel implements Runnable {
                     o.moveObject();
                 }
                 break;
+            case "resize":
+                if (o.o.isEmpty()) {
+                    System.out.println("#nothing to move");
+                } else {
+                    o.resizeObject();
+                }
+                break;
+            case "exit":
+                System.exit(0);
+                break;
             default:
                 System.out.println("#invalid action");
                 break;
