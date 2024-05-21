@@ -21,13 +21,11 @@ public class Object {
 
     @Override
     public String toString() {
-        return "Object{" +
-                "name='" + name + '\'' +
-                ", colour='" + colour + '\'' +
-                ", width=" + width +
-                ", height=" + height +
-                ", x=" + x +
-                ", y=" + y +
-                "}\n";
+        return "#" + name +
+                "\n  #colour " + colour +
+                "\n  #x" + x +
+                "\n  #y" + y +
+                "\n  #width" + width +
+                "\n  #height" + height + "\n\n";
     }
 }

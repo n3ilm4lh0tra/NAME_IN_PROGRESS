@@ -40,6 +40,7 @@ public class Objects {
             checkBounds(x, y, width, height);
             o.add(new Object(name, colour, c, width * 16, height * 16, x * 16, y * 16));
             System.out.println("#object added");
+            checkCollision();
         } catch (InputMismatchException e) {
             System.out.println("#invalid input, returning to menu");
         }
@@ -53,7 +54,7 @@ public class Objects {
         n = n.toUpperCase();
         System.out.println(n);
         for (int i = 0; i < o.size(); i++) {
-            if (o.get(i).name.toLowerCase().equals(n)) {
+            if (o.get(i).name.equals(n)) {
                 o.remove(i);
                 System.out.print("#object removed\n");
                 break;
@@ -81,8 +82,8 @@ public class Objects {
                     System.out.print("#new y\n#");
                     newY = sc.nextInt();
                     checkBounds(newX, newY, o.get(i).width, o.get(i).height);
-                    o.get(i).x = newX*16;
-                    o.get(i).y = newY*16;
+                    o.get(i).x = newX * 16;
+                    o.get(i).y = newY * 16;
                     System.out.println("#object moved moved to\n#x = " + newX + "\n#new y = " + newY);
                 } catch (InputMismatchException e) {
                     System.out.println("#invalid input, object was not moved");
@@ -92,7 +93,8 @@ public class Objects {
             }
         }
     }
-    public void resizeObject(){
+
+    public void resizeObject() {
         Scanner sc = new Scanner(System.in);
         String n;
         System.out.print("#object name\n#");
@@ -110,8 +112,8 @@ public class Objects {
                     System.out.print("#new y\n#");
                     newHeight = sc.nextInt();
                     checkBounds(o.get(i).x, o.get(i).y, newWidth, newHeight);
-                    o.get(i).x = newWidth*16;
-                    o.get(i).y = newHeight*16;
+                    o.get(i).x = newWidth * 16;
+                    o.get(i).y = newHeight * 16;
                     System.out.println("#object moved moved to\n#new width = " + newWidth + "\n#new height = " + newHeight);
                 } catch (InputMismatchException e) {
                     System.out.println("#invalid input, object was not moved");
@@ -121,17 +123,34 @@ public class Objects {
             }
         }
     }
-    public void checkBounds(int X, int Y, int WIDTH, int HEIGHT){
-        if(X < 1||X+WIDTH>r.getMAX_COL()+1||Y < 1||Y+HEIGHT>r.getMAX_ROW()+1) {
+
+    public void checkBounds(int X, int Y, int WIDTH, int HEIGHT) {
+        if (X < 1 || X + WIDTH > (r.getMAX_COL()*r.getSQUARE_SIZE()) + 1 || Y < 1 || Y + HEIGHT > (r.getMAX_ROW()*r.getSQUARE_SIZE()) + 1) {
+            System.out.println(r.getMAX_COL()*r.getSQUARE_SIZE());
+            System.out.println(r.getMAX_ROW()*r.getSQUARE_SIZE());
             System.out.println("#out of bounds");
             throw new InputMismatchException();
         }
     }
-    public void dupeChecker(String nme){
+
+    public void dupeChecker(String nme) {
         for (int i = 0; i < o.size(); i++) {
-            if(nme.equals(o.get(i).name)){
+            if (nme.equals(o.get(i).name)) {
                 System.out.println("#no duplicate names");
                 throw new InputMismatchException();
+            }
+        }
+    }
+    public void checkCollision(){
+        for (int i = 0; i < o.size(); i++) {
+            for (int j = 0; j < o.size(); j++) {
+                if(!o.get(i).name.equals(o.get(j).name)){
+                    if((o.get(i).x >= o.get(j).x&&o.get(i).x <= o.get(j).x+o.get(j).width)&&(o.get(i).y >= o.get(i).y&&o.get(i).y <= o.get(i).y+o.get(i).height)){
+                        System.out.println("#object collision\n#object removed");
+                        o.remove(j);
+                        throw new InputMismatchException();
+                    }
+                }
             }
         }
     }

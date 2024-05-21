@@ -4,8 +4,8 @@ import java.util.Scanner;
 
 public class Panel extends JPanel implements Runnable {
     Room room = new Room();
-    public int WIDTH = (room.getMAX_COL() * room.getSQUARE_SIZE()) + 100;
-    public int HEIGHT = (room.getMAX_ROW() * room.getSQUARE_SIZE()) + 100;
+    public int WIDTH = (room.MAX_COL * room.getSQUARE_SIZE()) + 100;;
+    public int HEIGHT = (room.MAX_ROW * room.getSQUARE_SIZE()) + 100;
     final int FPS = 60;
     Thread thread;
 
@@ -13,12 +13,12 @@ public class Panel extends JPanel implements Runnable {
     Text t = new Text();
 
     public Panel() {
+        //room.setRoomSize(WIDTH, HEIGHT);
         setPreferredSize(new Dimension(WIDTH, HEIGHT));
         setBackground(Color.BLACK);
     }
 
     public void launch() {
-        //room.setRoomSize();
         thread = new Thread(this);
         thread.start();
     }
@@ -73,6 +73,13 @@ public class Panel extends JPanel implements Runnable {
                     o.resizeObject();
                 }
                 break;
+            case "list":
+                if (o.o.isEmpty()) {
+                    System.out.println("#nothing to move");
+                } else {
+                    System.out.println(o.o);
+                }
+                break;
             case "help":
                 t.instructions();
                 break;
@@ -82,6 +89,7 @@ public class Panel extends JPanel implements Runnable {
             default:
                 System.out.println("#invalid action\n#type help for instructions");
                 break;
+
         }
     }
 
