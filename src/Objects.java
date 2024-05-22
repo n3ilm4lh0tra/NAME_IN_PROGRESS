@@ -40,7 +40,7 @@ public class Objects {
             checkBounds(x, y, width, height);
             o.add(new Object(name, colour, c, width * 16, height * 16, x * 16, y * 16));
             System.out.println("#object added");
-            checkCollision();
+            checkCollision(name);
         } catch (InputMismatchException e) {
             System.out.println("#invalid input, returning to menu");
         }
@@ -125,9 +125,9 @@ public class Objects {
     }
 
     public void checkBounds(int X, int Y, int WIDTH, int HEIGHT) {
-        if (X < 1 || X + WIDTH > (r.getMAX_COL()*r.getSQUARE_SIZE()) + 1 || Y < 1 || Y + HEIGHT > (r.getMAX_ROW()*r.getSQUARE_SIZE()) + 1) {
-            System.out.println(r.getMAX_COL()*r.getSQUARE_SIZE());
-            System.out.println(r.getMAX_ROW()*r.getSQUARE_SIZE());
+        if (X < 1 || X + WIDTH > (r.getMAX_COL() * r.getSQUARE_SIZE()) + 1 || Y < 1 || Y + HEIGHT > (r.getMAX_ROW() * r.getSQUARE_SIZE()) + 1) {
+            System.out.println(r.getMAX_COL() * r.getSQUARE_SIZE());
+            System.out.println(r.getMAX_ROW() * r.getSQUARE_SIZE());
             System.out.println("#out of bounds");
             throw new InputMismatchException();
         }
@@ -141,14 +141,17 @@ public class Objects {
             }
         }
     }
-    public void checkCollision(){
+
+    public void checkCollision(String n) {
         for (int i = 0; i < o.size(); i++) {
-            for (int j = 0; j < o.size(); j++) {
-                if(!o.get(i).name.equals(o.get(j).name)){
-                    if((o.get(i).x >= o.get(j).x&&o.get(i).x <= o.get(j).x+o.get(j).width)&&(o.get(i).y >= o.get(i).y&&o.get(i).y <= o.get(i).y+o.get(i).height)){
-                        System.out.println("#object collision\n#object removed");
-                        o.remove(j);
-                        throw new InputMismatchException();
+            if (o.get(i).name.equals(n)) {
+                for (int j = 0; j < o.size(); j++) {
+                    if (!o.get(i).name.equals(o.get(j).name)) {
+                        if ((o.get(i).x >= o.get(j).x && o.get(i).x <= o.get(j).x + o.get(j).width) && (o.get(i).y >= o.get(i).y && o.get(i).y <= o.get(i).y + o.get(i).height)) {
+                            System.out.println("#object collision\n#object removed");
+                            o.remove(j);
+                            throw new InputMismatchException();
+                        }
                     }
                 }
             }
