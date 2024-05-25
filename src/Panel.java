@@ -1,10 +1,11 @@
 import javax.swing.*;
 import java.awt.*;
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Panel extends JPanel implements Runnable {
     Room room = new Room();
-    public int WIDTH = (room.MAX_COL * room.getSQUARE_SIZE()) + 100;;
+    public int WIDTH = (room.MAX_COL * room.getSQUARE_SIZE()) + 100;
     public int HEIGHT = (room.MAX_ROW * room.getSQUARE_SIZE()) + 100;
     final int FPS = 60;
     Thread thread;
@@ -19,6 +20,7 @@ public class Panel extends JPanel implements Runnable {
     }
 
     public void launch() {
+        t.intro();
         thread = new Thread(this);
         thread.start();
     }

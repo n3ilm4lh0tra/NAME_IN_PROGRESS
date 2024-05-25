@@ -12,7 +12,7 @@ public class Main {
 
         JScrollPane sp = new JScrollPane(p);
         sp.getVerticalScrollBar().setUnitIncrement(16);
-        sp.getViewport().putClientProperty("EnabelWindowBlit", Boolean.TRUE);
+        sp.getViewport().putClientProperty("EnableWindowBlit", Boolean.TRUE);
         sp.getViewport().setScrollMode(JViewport.BACKINGSTORE_SCROLL_MODE);
         window.add(sp);
 
