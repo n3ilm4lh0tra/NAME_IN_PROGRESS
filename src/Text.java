@@ -8,6 +8,9 @@ public class Text {
                 #to remove - remove
                 #to move - move
                 #to resize - resize
+                #to list all objects - list
+                #to clear the grid - clear
+                #to exit - exit
                 #
                 #WARNING!!!
                 #commands are sensitive to spacebar

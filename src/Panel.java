@@ -1,6 +1,5 @@
 import javax.swing.*;
 import java.awt.*;
-import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Panel extends JPanel implements Runnable {
@@ -14,7 +13,6 @@ public class Panel extends JPanel implements Runnable {
     Text t = new Text();
 
     public Panel() {
-        //room.setRoomSize(WIDTH, HEIGHT);
         setPreferredSize(new Dimension(WIDTH, HEIGHT));
         setBackground(Color.BLACK);
     }
@@ -56,7 +54,7 @@ public class Panel extends JPanel implements Runnable {
                 break;
             case "remove":
                 if (o.o.isEmpty()) {
-                    System.out.println("#nothing to move");
+                    System.out.println("#nothing to remove");
                 } else {
                     o.removeObject();
                 }
@@ -70,20 +68,23 @@ public class Panel extends JPanel implements Runnable {
                 break;
             case "resize":
                 if (o.o.isEmpty()) {
-                    System.out.println("#nothing to move");
+                    System.out.println("#nothing to resize");
                 } else {
                     o.resizeObject();
                 }
                 break;
             case "list":
                 if (o.o.isEmpty()) {
-                    System.out.println("#nothing to move");
+                    System.out.println("#nothing to list");
                 } else {
                     System.out.println(o.o);
                 }
                 break;
             case "help":
                 t.instructions();
+                break;
+            case "clear":
+                o.o.clear();
                 break;
             case "exit":
                 System.exit(0);
