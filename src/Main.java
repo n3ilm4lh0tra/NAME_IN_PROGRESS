@@ -2,13 +2,15 @@ import javax.swing.*;
 
 public class Main {
     public static void main(String[] args) {
+        Panel p = new Panel();
+        p.setGridSize();
         JFrame window = new JFrame("NAME_IN_PROGRESS");
         window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         window.setResizable(true);
 
-        Panel p = new Panel();
         window.add(p);
         window.pack();
+        p.launch();
 
         JScrollPane sp = new JScrollPane(p);
         sp.getVerticalScrollBar().setUnitIncrement(16);
@@ -18,7 +20,7 @@ public class Main {
 
         window.setLocationRelativeTo(null);
         window.setVisible(true);
-        p.launch();
+
 
     }
 }

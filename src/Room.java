@@ -1,21 +1,16 @@
 import java.awt.*;
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class Room {
-    public int MAX_COL = 500;
-    public int MAX_ROW = 500;
+    public int MAX_COL;
+    public int MAX_ROW;
     private final int SQUARE_SIZE = 16;
     private final int HALF_SQUARE_SIZE = SQUARE_SIZE / 2;
+    boolean set = false;
 
-    /*public void setRoomSize(int width, int height) {
-        Scanner sc = new Scanner(System.in);
-        System.out.print("#enter grid width\n#");
-        MAX_COL = sc.nextInt();
-        System.out.print("#enter grid height\n#");
-        MAX_ROW = sc.nextInt();
-        width = (MAX_COL * getSQUARE_SIZE()) + 100;
-        height = (MAX_ROW * getSQUARE_SIZE()) + 100;
-    }*/
+    public void setRoomSize() {
+    }
 
     public int getMAX_COL() {
         return MAX_COL;

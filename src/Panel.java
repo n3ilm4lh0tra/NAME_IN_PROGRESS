@@ -4,8 +4,7 @@ import java.util.Scanner;
 
 public class Panel extends JPanel implements Runnable {
     Room room = new Room();
-    public int WIDTH = (room.MAX_COL * room.getSQUARE_SIZE()) + 100;
-    public int HEIGHT = (room.MAX_ROW * room.getSQUARE_SIZE()) + 100;
+
     final int FPS = 60;
     Thread thread;
 
@@ -13,11 +12,66 @@ public class Panel extends JPanel implements Runnable {
     Text t = new Text();
 
     public Panel() {
+
+    }
+
+    public void setGridSize() {
+        Scanner sc = new Scanner(System.in);
+        String[] dimensions = new String[2];
+        int[] grid = new int[2];
+        System.out.println("#set the size in full meters\n#max is 10");
+        for (int i = 0; i < dimensions.length; i++) {
+            dimensions[i] = sc.nextLine();
+            switch (dimensions[i]) {
+                case "1":
+                    grid[i] = 100;
+                    break;
+                case "2":
+                    grid[i] = 200;
+                    break;
+                case "3":
+                    grid[i] = 300;
+                    break;
+                case "4":
+                    grid[i] = 400;
+                    break;
+                case "5":
+                    grid[i] = 500;
+                    break;
+                case "6":
+                    grid[i] = 600;
+                    break;
+                case "7":
+                    grid[i] = 700;
+                    break;
+                case "8":
+                    grid[i] = 800;
+                    break;
+                case "9":
+                    grid[i] = 900;
+                    break;
+                case "10":
+                    grid[i] = 1000;
+                    break;
+                default:
+                    System.out.println("#invalid\n#set to 1 meter");
+                    grid[i] = 1;
+            }
+        }
+        room.setMAX_COL(grid[0]);
+        room.setMAX_ROW(grid[1]);
+        System.out.println(room.getMAX_COL() + ", " + room.getMAX_ROW());
+        int WIDTH = (room.MAX_COL * room.getSQUARE_SIZE()) + 100;
+        int HEIGHT = (room.MAX_ROW * room.getSQUARE_SIZE()) + 100;
         setPreferredSize(new Dimension(WIDTH, HEIGHT));
         setBackground(Color.BLACK);
     }
 
+    //public int WIDTH = (room.MAX_COL * room.getSQUARE_SIZE()) + 100;
+    //public int HEIGHT = (room.MAX_ROW * room.getSQUARE_SIZE()) + 100;
+
     public void launch() {
+        //setGridSize();
         t.intro();
         thread = new Thread(this);
         thread.start();
@@ -45,6 +99,7 @@ public class Panel extends JPanel implements Runnable {
     }
 
     private void update() {
+        room.setRoomSize();
         Scanner sc = new Scanner(System.in);
         System.out.print("#what do you want to do?\n#");
         String action = sc.nextLine();
