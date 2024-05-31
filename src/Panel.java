@@ -14,6 +14,10 @@ public class Panel extends JPanel implements Runnable {
     public Panel() {
     }
 
+    /**
+     * set the size of the frid in full meters
+     * eventually shall be set to be more versatile
+     */
     public void setGridSize() {
         Scanner sc = new Scanner(System.in);
         String[] dimensions = new String[2];
@@ -63,7 +67,7 @@ public class Panel extends JPanel implements Runnable {
         room.MAX_COL = grid[0];
         o.r.MAX_ROW = grid[1];
         room.MAX_ROW = grid[1];
-        System.out.println(o.r.MAX_COL + ", " + o.r.MAX_ROW+"\n"+grid[0] + ", " + grid[1]);
+        System.out.println(o.r.MAX_COL + ", " + o.r.MAX_ROW + "\n" + grid[0] + ", " + grid[1]);
         int WIDTH = (o.r.MAX_COL * o.r.SQUARE_SIZE) + 100;
         int HEIGHT = (o.r.MAX_ROW * o.r.SQUARE_SIZE) + 100;
         setPreferredSize(new Dimension(WIDTH, HEIGHT));
@@ -73,6 +77,9 @@ public class Panel extends JPanel implements Runnable {
     public int W = room.MAX_COL;
     public int H = room.MAX_ROW;
 
+    /**
+     * Starts the thread
+     */
     public void launch() {
         //setGridSize();
         t.intro();
@@ -81,6 +88,10 @@ public class Panel extends JPanel implements Runnable {
     }
 
     @Override
+    /**
+     * Temporary update
+     * Temp because it is intended to split the logic and graphic into 2 threads
+     */
     public void run() {
         double drawInterval = (double) 1000000000 / FPS;
         double delta = 0;
@@ -101,6 +112,10 @@ public class Panel extends JPanel implements Runnable {
         }
     }
 
+    /**
+     * updates the logic and graphics
+     * once split it shall only update the graphics 60 times a second
+     */
     private void update() {
         /*System.out.println(room.MAX_COL + ", " + room.MAX_ROW);
         Scanner sc = new Scanner(System.in);
@@ -155,6 +170,11 @@ public class Panel extends JPanel implements Runnable {
         o.update();
     }
 
+    /**
+     * creates and updates the graphics
+     *
+     * @param g the <code>Graphics</code> graphic component, allows one to add shapes and colour
+     */
     public void paintComponent(Graphics g) {
         super.paintComponent(g);
         Graphics2D g2 = (Graphics2D) g;

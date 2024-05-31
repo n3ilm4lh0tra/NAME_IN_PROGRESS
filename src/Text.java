@@ -1,6 +1,11 @@
 public class Text {
-    public Text(){}
-    public void instructions(){
+    public Text() {
+    }
+
+    /**
+     * the instruction manual
+     */
+    public void instructions() {
         System.out.println("""
                 #INSTRICTION
                 #-----------------------------
@@ -26,7 +31,11 @@ public class Text {
                  scenario may it be moving or resizing
                 """);
     }
-    public void intro(){
+
+    /**
+     * the introduction
+     */
+    public void intro() {
         System.out.println("""
                 #type help for instructions
                 """);

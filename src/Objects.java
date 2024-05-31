@@ -96,6 +96,12 @@ public class Objects {
         }
     }
 
+    /**
+     * changes an already existing object's size
+     * object is found via object name
+     *
+     * @throws InputMismatchException if not within bounds or colliding with other objects
+     */
     public void resizeObject() {
         Scanner sc = new Scanner(System.in);
         String n;
@@ -127,8 +133,9 @@ public class Objects {
         }
     }
 
+    //checks whether the object is within the grid (INCOMPLETE)
     public void checkBounds(int X, int Y, int WIDTH, int HEIGHT) {
-        if ((X < 1 || X + WIDTH - r.SQUARE_SIZE > r.MAX_COL/* * r.SQUARE_SIZE*/ + 1) || (Y < 1 || Y + HEIGHT - r.SQUARE_SIZE > r.MAX_ROW/* * r.SQUARE_SIZE*/+ 1)) {
+        if ((X < 1 || X + WIDTH - r.SQUARE_SIZE > r.MAX_COL/* * r.SQUARE_SIZE*/ + 1) || (Y < 1 || Y + HEIGHT - r.SQUARE_SIZE > r.MAX_ROW/* * r.SQUARE_SIZE*/ + 1)) {
             //System.out.println(r.MAX_COL/* * r.SQUARE_SIZE*/);
             //System.out.println(r.MAX_ROW/* * r.SQUARE_SIZE*/);
             System.out.println("#out of bounds");
@@ -136,6 +143,7 @@ public class Objects {
         }
     }
 
+    //checks for duplicate names
     public void dupeChecker(String nme) {
         for (int i = 0; i < o.size(); i++) {
             if (nme.equals(o.get(i).name)) {
@@ -145,6 +153,14 @@ public class Objects {
         }
     }
 
+    /**
+     * Every time an object is created or updated,
+     * the method checks for any colliding objects
+     * if they are, the updated object is removed
+     *
+     * @param n name of updated object
+     * @throws InputMismatchException if collision is detected
+     */
     public void checkCollision(String n) {
         for (int i = 0; i < o.size(); i++) {
             if (o.get(i).name.equals(n)) {
@@ -194,8 +210,12 @@ public class Objects {
                 break;
         }
     }
-    public void update(){
-        System.out.println(r.MAX_COL + ", " + r.MAX_ROW);
+
+    /**
+     * Menu for all functions besides grid size
+     */
+    public void update() {
+        //System.out.println(r.MAX_COL + ", " + r.MAX_ROW);
         Scanner sc = new Scanner(System.in);
         System.out.print("#what do you want to do?\n#");
         String action = sc.nextLine();
@@ -246,7 +266,8 @@ public class Objects {
 
         }
     }
-    public void draw(Graphics g2){
+
+    public void draw(Graphics g2) {
         for (int i = 0; i < o.size(); i++) {
             g2.setColor(o.get(i).c);
             g2.fillRect(o.get(i).x, o.get(i).y, o.get(i).width, o.get(i).height);
