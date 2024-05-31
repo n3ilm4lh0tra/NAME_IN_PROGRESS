@@ -6,6 +6,7 @@ import java.util.Scanner;
 public class Objects {
     ArrayList<Object> o = new ArrayList<>();
     Room r = new Room();
+    Text t = new Text();
     String name;
     String colour;
     int width;
@@ -127,9 +128,9 @@ public class Objects {
     }
 
     public void checkBounds(int X, int Y, int WIDTH, int HEIGHT) {
-        if (X < 1 || X + WIDTH > (r.getMAX_COL() * r.getSQUARE_SIZE()) + 1 || Y < 1 || Y + HEIGHT > (r.getMAX_ROW() * r.getSQUARE_SIZE()) + 1) {
-            System.out.println(r.getMAX_COL() * r.getSQUARE_SIZE());
-            System.out.println(r.getMAX_ROW() * r.getSQUARE_SIZE());
+        if ((X < 1 || X + WIDTH - r.SQUARE_SIZE > r.MAX_COL/* * r.SQUARE_SIZE*/ + 1) || (Y < 1 || Y + HEIGHT - r.SQUARE_SIZE > r.MAX_ROW/* * r.SQUARE_SIZE*/+ 1)) {
+            //System.out.println(r.MAX_COL/* * r.SQUARE_SIZE*/);
+            //System.out.println(r.MAX_ROW/* * r.SQUARE_SIZE*/);
             System.out.println("#out of bounds");
             throw new InputMismatchException();
         }
@@ -149,10 +150,10 @@ public class Objects {
             if (o.get(i).name.equals(n)) {
                 for (int j = 0; j < o.size(); j++) {
                     if (!o.get(i).name.equals(o.get(j).name)) {
-                        if (((o.get(i).x >= o.get(j).x && o.get(i).x <= o.get(j).x + o.get(j).width-16) &&
-                                (o.get(i).y >= o.get(i).y && o.get(i).y <= o.get(i).y + o.get(i).height-16)) ||
-                                ((o.get(i).x + o.get(i).width-16 >= o.get(j).x && o.get(i).x + o.get(i).width-16 <= o.get(j).x + o.get(j).width-16) &&
-                                (o.get(i).y + o.get(i).height-16 >= o.get(i).y && o.get(i).y + o.get(i).height-16 <= o.get(i).y + o.get(i).height-16))) {
+                        if (((o.get(i).x >= o.get(j).x && o.get(i).x <= o.get(j).x + o.get(j).width - 16) &&
+                                (o.get(i).y >= o.get(i).y && o.get(i).y <= o.get(i).y + o.get(i).height - 16)) ||
+                                ((o.get(i).x + o.get(i).width - 16 >= o.get(j).x && o.get(i).x + o.get(i).width - 16 <= o.get(j).x + o.get(j).width - 16) &&
+                                        (o.get(i).y + o.get(i).height - 16 >= o.get(i).y && o.get(i).y + o.get(i).height - 16 <= o.get(i).y + o.get(i).height - 16))) {
                             System.out.println("#object collision\n#object removed");
                             o.remove(i);
                             throw new InputMismatchException();
@@ -191,6 +192,68 @@ public class Objects {
                 colour = "white";
                 c = Color.WHITE;
                 break;
+        }
+    }
+    public void update(){
+        System.out.println(r.MAX_COL + ", " + r.MAX_ROW);
+        Scanner sc = new Scanner(System.in);
+        System.out.print("#what do you want to do?\n#");
+        String action = sc.nextLine();
+        switch (action.toLowerCase()) {
+            case "add":
+                addObject();
+                break;
+            case "remove":
+                if (o.isEmpty()) {
+                    System.out.println("#nothing to remove");
+                } else {
+                    removeObject();
+                }
+                break;
+            case "move":
+                if (o.isEmpty()) {
+                    System.out.println("#nothing to move");
+                } else {
+                    moveObject();
+                }
+                break;
+            case "resize":
+                if (o.isEmpty()) {
+                    System.out.println("#nothing to resize");
+                } else {
+                    resizeObject();
+                }
+                break;
+            case "list":
+                if (o.isEmpty()) {
+                    System.out.println("#nothing to list");
+                } else {
+                    System.out.println(o);
+                }
+                break;
+            case "help":
+                t.instructions();
+                break;
+            case "clear":
+                o.clear();
+                break;
+            case "exit":
+                System.exit(0);
+                break;
+            default:
+                System.out.println("#invalid action\n#type help for instructions");
+                break;
+
+        }
+    }
+    public void draw(Graphics g2){
+        for (int i = 0; i < o.size(); i++) {
+            g2.setColor(o.get(i).c);
+            g2.fillRect(o.get(i).x, o.get(i).y, o.get(i).width, o.get(i).height);
+        }
+        for (int i = 0; i < o.size(); i++) {
+            g2.setColor(Color.BLACK);
+            g2.drawString(o.get(i).name, o.get(i).x + 1, o.get(i).y + (o.get(i).height / 2));
         }
     }
 }

@@ -1,16 +1,9 @@
 import java.awt.*;
-import java.util.InputMismatchException;
-import java.util.Scanner;
 
 public class Room {
     public int MAX_COL;
     public int MAX_ROW;
-    private final int SQUARE_SIZE = 16;
-    private final int HALF_SQUARE_SIZE = SQUARE_SIZE / 2;
-    boolean set = false;
-
-    public void setRoomSize() {
-    }
+    public int SQUARE_SIZE = 16;
 
     public int getMAX_COL() {
         return MAX_COL;
