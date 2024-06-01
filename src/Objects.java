@@ -18,6 +18,17 @@ public class Objects {
     public Objects() {
     }
 
+    /**
+     * adds object
+     * inputs:
+     *  name
+     *  colour
+     *  width
+     *  height
+     *  x coordinate
+     *  y coordinate
+     * @throws InputMismatchException if invalid integer
+     */
     public void addObject() {
         Scanner sc = new Scanner(System.in);
         System.out.print("#object name\n#");
@@ -47,6 +58,10 @@ public class Objects {
         }
     }
 
+    /**
+     * Finds existing object via name
+     * removes it
+     */
     public void removeObject() {
         Scanner sc = new Scanner(System.in);
         String n;
@@ -65,6 +80,11 @@ public class Objects {
         }
     }
 
+    /**
+     * Finds existing object via name
+     * allows to move an already exising object
+     * @throws InputMismatchException if collision detected or is outside of grid
+     */
     public void moveObject() {
         Scanner sc = new Scanner(System.in);
         String n;
